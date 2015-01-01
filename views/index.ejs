@@ -1,0 +1,24 @@
+<!doctype html>
+<html ng-app="MapsApp">
+<head>
+   
+   <meta charset="utf-8">
+   <meta http-equiv="Content-Type" content="text/html">
+   <title>Maps App</title>
+</head>
+
+<body ng-controller="MapsController as MapsCtrl">
+<div>
+   <div>
+      <h1>Google Maps API Fun</h1>
+      <button ng-click="getMapDirections()">Load</button>
+   </div>
+<div>
+<br>
+<div>{{ data }}</div>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+  <script src="app.js"></script>
+<script src="/javascripts/MapsController.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.27/angular.min.js"></script>
+</body>
+</html>
