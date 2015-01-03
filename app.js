@@ -5,23 +5,11 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var cors = require('cors');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
-
-// CORS implementation
-
-// app.use(function(req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   next();
-// });
-
-// app.use(cors());
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
