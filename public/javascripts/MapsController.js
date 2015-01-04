@@ -1,23 +1,43 @@
+
 var app = angular.module('MapsApp', []);
 
-app.controller('MapsController', ['$scope', '$http', function($scope, $http) {
-	$scope.getMapDirections = function () {
+app.controller('MapsController', ['$scope', function($scope) {
 
-	base_url = "https://maps.googleapis.com/maps/api/directions/json?origin=Atlanta,GA&destination=Marietta,GA&key=AIzaSyDDKB4EBWfJj0i2qb-Qul3qxfv9D7Mk_D0";
-	base_url2 = "https://maps.googleapis.com/maps/api/directions/json?origin=Atlanta,GA&destination=Marietta,GA&key=AIzaSyDDKB4EBWfJj0i2qb-Qul3qxfv9D7Mk_D0?callback=JSON_CALLBACK";
-	method = 'GET'
-	method2 = 'JSONP'
+	//Unix epoch time conversion
+	//currentTime = Math.round(new Date().getTime()/1000.0);
+	//console.log('Current time = ' + currentTime);
 
-	$http({method: method, url: base_url}).
-		success(function(data, status) {
-			$scope.status = status;
-			$scope.data = data;
-		}).
-		error(function(data, status) {
-			$scope.data = data || "Request failed";
-			$scope.status = status;
+	//Initialized vars for testing
+	$scope.origin = "Atlanta, GA";
+	$scope.destination = "Dunwoody, GA";
+
+	$scope.getDirections = function () {
+
+		//Request details
+		DirectionsRequest = {
+			origin: $scope.origin,
+			destination: $scope.destination,
+			provideRouteAlternatives: false,
+			travelMode: google.maps.TravelMode.DRIVING,
+			unitSystem: google.maps.UnitSystem.IMPERIAL
+		}
+
+		//Actual API request
+		var directionsService = new google.maps.DirectionsService();
+		directionsService.route(DirectionsRequest, function(result, status) {
+			if (status == google.maps.DirectionsStatus.OK) {
+				console.log(status);
+				console.log(result);
+
+				$scope.status = status;
+				$scope.result = result;
+			} else {
+				console.log(status);
+			}
 		});
 	}
 }]);
+
+
 
 
