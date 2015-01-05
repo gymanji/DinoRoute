@@ -23,6 +23,7 @@
       <div><strong>API response status:  </strong>{{ status }} </div>
       <div><strong>Estimated trip time: </strong>{{ result.routes[0].legs[0].duration.text }} </div>
       <div><strong>Epoch trip value: </strong>{{ result.routes[0].legs[0].duration.value }} </div>
+      <div><strong>Current Epoch time: </strong>{{ currentTime }} </div>
       <div><strong>Trip summary: </strong>{{ result.routes[0].summary }} </div>
    </div>
    <br/>
@@ -30,11 +31,16 @@
 </div>
 <br/>
 
+<h3>ReadFile Test</h3>
+<div ng-controller="DinoNotifier">
+   <button ng-click="readSensitiveFile()">Read file</button>
+   <div>accountSid: {{ accountSid }}</div>
+   <div>authToken: {{authToken }}</div>
+</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular.js"></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDKB4EBWfJj0i2qb-Qul3qxfv9D7Mk_D0"></script>
 <script src="/javascripts/MapsController.js"></script>
-<!--<script src="/javascripts/fileSync.js"></script>-->
 
 </body>
 </html>
