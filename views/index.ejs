@@ -24,12 +24,12 @@
       <div><strong>Estimated trip time: </strong>{{ result.routes[0].legs[0].duration.text }} </div>
       <div><strong>Epoch trip value: </strong>{{ result.routes[0].legs[0].duration.value }} </div>
       <div><strong>Trip summary: </strong>{{ result.routes[0].summary }} </div>
+      <div><strong>Trip legs: </strong>{{ routeLegCount }} </div>
+      <strong>Route list: </strong><div ng-repeat="step in routeList">{{ routeList[step] }} </div>
    </div>
    <br/>
-
 </div>
 <br/>
-
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular.js"></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDKB4EBWfJj0i2qb-Qul3qxfv9D7Mk_D0"></script>

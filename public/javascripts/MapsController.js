@@ -1,4 +1,3 @@
-var fs = require('fs');
 
 var app = angular.module('MapsApp', []);
 
@@ -29,11 +28,25 @@ app.controller('MapsController', ['$scope', function($scope) {
 			if (status == google.maps.DirectionsStatus.OK) {
 				$scope.status = status;
 				$scope.result = result;
+
+				// Route data
+				$scope.routeLegCount = result.routes[0].legs[0].steps.length;
+				var routeDetailSteps = result.routes[0].legs[0];
+				$scope.routeList = [];
+
+				for (var i = 0; i < $scope.routeLegCount; i++) {
+					$scope.routeList.push(routeDetailSteps.steps[i].instructions);
+
+				}		
+				console.log($scope.routeList);
+
+
 				$scope.$digest();
 			} else {
 				console.log(status);
 			}
-		});
+		});	
+		
 	}
 }]);
 
