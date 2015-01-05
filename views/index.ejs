@@ -1,29 +1,40 @@
 <!DOCTYPE html>
 <html ng-app="MapsApp">
 <head>
-   <title>Maps App</title>
+   <title>Traffic Notifier</title>
 </head>
 
-<body ng-controller="MapsController">
-<div>
-   <h3>Google Maps API</h3>
+<body>
+<div ng-controller="MapsController" style="border-bottom: double">
+   <h2>Travel Details</h2>
    <form ng-submit="getDirections()">
+
+      <strong>Start</strong>
       <input type="text" ng-model="origin" required/>
-      <h3>End</h3>
+      <strong>End</strong>
       <input type="text" ng-model="destination" required/>
       <br/>
       <br/>
       <button action="submit">Find out!</button>
    </form>
    <br/>
-   <div> {{ status }} </div>
-   <div> {{ result.routes[0].legs[0].duration.text }} </div>
+   <div ng-show="result">
+      <h3>Results:</h3>
+      <div><strong>API response status:  </strong>{{ status }} </div>
+      <div><strong>Estimated trip time: </strong>{{ result.routes[0].legs[0].duration.text }} </div>
+      <div><strong>Epoch trip value: </strong>{{ result.routes[0].legs[0].duration.value }} </div>
+      <div><strong>Trip summary: </strong>{{ result.routes[0].summary }} </div>
+   </div>
+   <br/>
 
 </div>
+<br/>
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular.js"></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDKB4EBWfJj0i2qb-Qul3qxfv9D7Mk_D0"></script>
 <script src="/javascripts/MapsController.js"></script>
+<!--<script src="/javascripts/fileSync.js"></script>-->
 
 </body>
 </html>
