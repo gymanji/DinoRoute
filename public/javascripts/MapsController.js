@@ -1,6 +1,8 @@
 
 var app = angular.module('MapsApp', []);
 
+var client = require('twilio')('ACb', '0f7');
+
 app.controller('MapsController', ['$scope', function($scope) {
 
 	// Initialized vars for testing
@@ -11,7 +13,6 @@ app.controller('MapsController', ['$scope', function($scope) {
 
 		//Unix epoch time conversion
 		$scope.currentTime = Math.round(new Date().getTime()/1000.0);
-
 
 		// Request details
 		DirectionsRequest = {
@@ -36,54 +37,69 @@ app.controller('MapsController', ['$scope', function($scope) {
 	}
 }]);
 
-app.controller('DinoNotifier', ['$scope', 'ReadFile', function($scope, ReadFile) {
+//app.controller('DinoNotifier', ['$scope', 'ReadFile', function($scope, ReadFile) {
+//
+//	//$scope.sendSMS = function() {
+//
+//		// Account Credentials
+//		$scope.readSensitiveFile = function() {
+//
+//			console.log("readSensitiveFile button clicked");
+//			var fs = require('fs');
+//			var path = "//Users/Zach/Development/GitHub Repos/DinoRoute/DinoRoute/text.log";
+//			var options = {encoding: 'utf8', flag: 'r'};
+//
+//			fs.readFile(path, options, function(err, data) {
+//				if (err) {
+//					return console.log(err);
+//				}
+//				var parsed = JSON.parse(data);
+//				console.log(parsed.accountSid);
+//				console.log(parsed.authToken);
+//				$scope.accountSid = parsed.accountSid;
+//				$scope.authToken = parsed.authToken;
+//				$scope.$digest();
+//			});
+//		}
+//}]);
 
-	//$scope.sendSMS = function() {
+app.controller('NotifyCtrl', ['$scope', function($scope) {
 
-		// Account Credentials
-		$scope.readSensitiveFile = function() {
+	$scope.testText = "This is from NotifyCtrl";
+	//var client = new twilio.RestClient('ACb', '0f78');
 
-			console.log("readSensitiveFile button clicked");
-			var fs = require('fs');
-			var path = "//Users/Zach/Development/GitHub Repos/DinoRoute/DinoRoute/text.log";
-			var options = {encoding: 'utf8', flag: 'r'};
+	$scope.notify = function() {
+		client.sendMessage({
 
-			fs.readFile(path, options, function(err, data) {
-				if (err) {
-					return console.log(err);
-				}
-				var parsed = JSON.parse(data);
-				console.log(parsed.accountSid);
-				console.log(parsed.authToken);
-				$scope.accountSid = parsed.accountSid;
-				$scope.authToken = parsed.authToken;
-				$scope.$digest();
-			});
-		}
+			to:'+1',
+			from: '+12019571381',
+			body: 'Twilio text!'
 
-		// Twilio module and REST client
-		//var client = require('twilio')(accountSid, authToken);
-		//
-		//client.messages.create({
-		//  from: "+12019571381",
-		//}), function(err, message) {
-		//  console.log(message.sid);
-		//}
-	//}
-}]);
+		}, function(err, responseData) {
 
-app.factory('ReadFile', ['$scope' ,'$http', function($scope, $http) {
+			if (!err) {
 
-	var path = "//Users/Zach/Development/GitHub Repos/DinoRoute/DinoRoute/text.log";
+				console.log(responseData.from);
+				console.log(responseData.body);
 
-	$http.get(path).
-		success(function(data2, status2) {
-			$scope.data2 = data2;
-			$scope.status2 = status2;
-		}).
-		error(function(data, status) {
-			$scope.data2 = data2;
-			$scope.status2 = status2;
+			}
 		});
+	}
 
 }]);
+
+//app.factory('ReadFile', ['$scope' ,'$http', function($scope, $http) {
+//
+//	var path = "//Users/Zach/Development/GitHub Repos/DinoRoute/DinoRoute/text.log";
+//
+//	$http.get(path).
+//		success(function(data2, status2) {
+//			$scope.data2 = data2;
+//			$scope.status2 = status2;
+//		}).
+//		error(function(data, status) {
+//			$scope.data2 = data2;
+//			$scope.status2 = status2;
+//		});
+//
+//}]);
