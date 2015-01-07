@@ -1,7 +1,6 @@
+var SMSconfig = require('../../SMSconfig.log');
 
 var app = angular.module('MapsApp', []);
-
-var client = require('twilio')('ACb', '0f7');
 
 app.controller('MapsController', ['$scope', function($scope) {
 
@@ -37,69 +36,24 @@ app.controller('MapsController', ['$scope', function($scope) {
 	}
 }]);
 
-//app.controller('DinoNotifier', ['$scope', 'ReadFile', function($scope, ReadFile) {
-//
-//	//$scope.sendSMS = function() {
-//
-//		// Account Credentials
-//		$scope.readSensitiveFile = function() {
-//
-//			console.log("readSensitiveFile button clicked");
-//			var fs = require('fs');
-//			var path = "//Users/Zach/Development/GitHub Repos/DinoRoute/DinoRoute/text.log";
-//			var options = {encoding: 'utf8', flag: 'r'};
-//
-//			fs.readFile(path, options, function(err, data) {
-//				if (err) {
-//					return console.log(err);
-//				}
-//				var parsed = JSON.parse(data);
-//				console.log(parsed.accountSid);
-//				console.log(parsed.authToken);
-//				$scope.accountSid = parsed.accountSid;
-//				$scope.authToken = parsed.authToken;
-//				$scope.$digest();
-//			});
-//		}
-//}]);
-
 app.controller('NotifyCtrl', ['$scope', function($scope) {
 
-	$scope.testText = "This is from NotifyCtrl";
-	//var client = new twilio.RestClient('ACb', '0f78');
+	var accountSid = SMSconfig.accountSid;
+	var authToken = SMSconfig.authToken;
 
 	$scope.notify = function() {
-		client.sendMessage({
 
-			to:'+1',
-			from: '+12019571381',
-			body: 'Twilio text!'
+		var client = require('twilio')(accountSid, authToken);
 
-		}, function(err, responseData) {
-
-			if (!err) {
-
-				console.log(responseData.from);
-				console.log(responseData.body);
-
-			}
+		client.sms.messages.create({
+			body: "DinoRoute Message 2 ;)",
+			to: "+1",
+			from: SMSconfig.sender
+		}, function(err, message) {
+			process.stdout.write(message.sid);
+			console.log(err);
 		});
-	}
 
+	}
 }]);
 
-//app.factory('ReadFile', ['$scope' ,'$http', function($scope, $http) {
-//
-//	var path = "//Users/Zach/Development/GitHub Repos/DinoRoute/DinoRoute/text.log";
-//
-//	$http.get(path).
-//		success(function(data2, status2) {
-//			$scope.data2 = data2;
-//			$scope.status2 = status2;
-//		}).
-//		error(function(data, status) {
-//			$scope.data2 = data2;
-//			$scope.status2 = status2;
-//		});
-//
-//}]);
