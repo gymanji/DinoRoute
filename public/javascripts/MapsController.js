@@ -33,7 +33,6 @@ app.controller('MapsController', ['$scope', function($scope) {
 
 				for (var i = 0; i < $scope.routeLegCount; i++) {
 					$scope.routeList.push(routeDetailSteps.steps[i].instructions);
-
 				}		
 				console.log($scope.routeList);
 
@@ -51,7 +50,6 @@ app.controller('MapsController', ['$scope', function($scope) {
 		console.log('currentTime: ' + $scope.currentTime);
 		$scope.arrivalEpochTime = $scope.currentTime + $scope.tripDuration;
 		$scope.arrivalReadableTime = new Date($scope.arrivalEpochTime * 1000);
-
 	}
 }]);
 
@@ -79,8 +77,6 @@ app.controller('NotifyCtrl', ['$scope','$http', function($scope, $http) {
 			process.stdout.write(message.sid);
 			console.log(err);
 		});
-
-
 	}
 }]);
 
