@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-//var SMSconfig = require('../../SMSconfig.log');
->>>>>>> twilio
 
 var app = angular.module('MapsApp', []);
 
@@ -28,7 +24,7 @@ app.controller('MapsController', ['$scope', function($scope) {
 			if (status == google.maps.DirectionsStatus.OK) {
 				$scope.status = status;
 				$scope.result = result;
-<<<<<<< HEAD
+
 
 				// Route data
 				$scope.routeLegCount = result.routes[0].legs[0].steps.length;
@@ -41,19 +37,13 @@ app.controller('MapsController', ['$scope', function($scope) {
 				}		
 				console.log($scope.routeList);
 
-
-=======
 				$scope.tripDuration = result.routes[0].legs[0].duration.value;
 				console.log('tripDuration: ' + $scope.tripDuration);
->>>>>>> twilio
+
 				$scope.$digest();
 			} else {
 				console.log(status);
 			}
-<<<<<<< HEAD
-		});	
-		
-=======
 		});
 
 		//Unix epoch time conversion
@@ -83,14 +73,14 @@ app.controller('NotifyCtrl', ['$scope','$http', function($scope, $http) {
 
 		client.sms.messages.create({
 			body: "DinoRoute Message 2 ;)",
-			to: "+15713931277",
+			to: "+1",
 			from: SMSconfig.sender
 		}, function(err, message) {
 			process.stdout.write(message.sid);
 			console.log(err);
 		});
 
->>>>>>> twilio
+
 	}
 }]);
 

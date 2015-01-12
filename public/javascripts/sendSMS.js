@@ -10,7 +10,7 @@ var client = require('twilio')(accountSid, authToken);
 
 client.sms.messages.create({
     body: "messagy messages",
-    to: "+15713931277",
+    to: "+1",
     from: SMSconfig.sender
 }, function(err, message) {
     process.stdout.write(message.sid);

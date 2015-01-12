@@ -3,7 +3,7 @@
  */
 
 var fs = require('fs');
-var path = "//Users/Zach/Development/GitHub Repos/DinoRoute/DinoRoute/text.log";
+var path = "//DinoRoute/DinoRoute/text.log";
 var options = {encoding: 'utf8', flag: 'r'};
 
 fs.readFile(path, options, function(err, data) {
