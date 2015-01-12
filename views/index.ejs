@@ -24,10 +24,12 @@
       <div><strong>Estimated trip time: </strong>{{ result.routes[0].legs[0].duration.text }} </div>
       <div><strong>Epoch trip value: </strong>{{ result.routes[0].legs[0].duration.value }} </div>
       <div><strong>Current Epoch time: </strong>{{ currentTime }} </div>
+      <!--<div><strong>Current + trip time (Epoch): </strong>{{ currentTime + result.routes[0].legs[0].duration.value}} </div>-->
+      <div><strong>Arrival time (Epoch): </strong>{{ arrivalEpochTime}} </div>
+      <div><strong>Arrival time (Readable): </strong>{{ arrivalReadableTime}} </div>
       <div><strong>Trip summary: </strong>{{ result.routes[0].summary }} </div>
    </div>
    <br/>
-
 </div>
 <br/>
 
@@ -35,7 +37,6 @@
 <div ng-controller="NotifyCtrl">
    {{ testText }}
    <button ng-click="notify()">Click me to send a message!</button>
-
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular.js"></script>

@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var fs = require('fs');
 var mongoose = require('mongoose');
-var SMSconfig = require('./SMSconfig.log')
+//var SMSconfig = require('./SMSconfig.log')
 
 var routes = require('./routes/index');
 var users = require('./routes/users');

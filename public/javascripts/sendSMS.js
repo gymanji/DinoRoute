@@ -9,8 +9,8 @@ var authToken = SMSconfig.authToken;
 var client = require('twilio')(accountSid, authToken);
 
 client.sms.messages.create({
-    body: "you smell like soot and poo",
-    to: "+13043764884",
+    body: "messagy messages",
+    to: "+15713931277",
     from: SMSconfig.sender
 }, function(err, message) {
     process.stdout.write(message.sid);
