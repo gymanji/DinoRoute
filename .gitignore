@@ -19,12 +19,17 @@
 *.rar
 *.tar
 *.zip
+
+# Node_Modules #
+################
+node_modules
  
 # Logs and databases #
 ######################
 *.log
 *.sql
 *.sqlite
+npm-debug.log
  
 # OS generated files #
 ######################
