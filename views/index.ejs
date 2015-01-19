@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html ng-app="MapsApp">
 <head>
-   <title>Traffic Notifier</title>
+   <title>Travel Notifier</title>
 </head>
 
 <body>
 <div ng-controller="MapsController" style="border-bottom: double">
    <h2>Travel Details</h2>
    <form ng-submit="getDirections()">
-
       <strong>Start</strong>
-      <input type="text" ng-model="origin" required/>
+      <input type="text" ng-model="origin" style="width: 275px" required/>
+      <br/>
+      <br/>
       <strong>End</strong>
-      <input type="text" ng-model="destination" required/>
+      <input type="text" ng-model="destination" style="width: 275px" required/>
       <br/>
       <br/>
       <button action="submit">Find out!</button>
@@ -22,28 +23,31 @@
       <h3>Results:</h3>
       <div><strong>API response status:  </strong>{{ status }} </div>
       <div><strong>Estimated trip time: </strong>{{ result.routes[0].legs[0].duration.text }} </div>
-      <div><strong>Epoch trip value: </strong>{{ result.routes[0].legs[0].duration.value }} </div>
-      <div><strong>Current Epoch time: </strong>{{ currentTime }} </div>
       <!--<div><strong>Current + trip time (Epoch): </strong>{{ currentTime + result.routes[0].legs[0].duration.value}} </div>-->
-      <div><strong>Arrival time (Epoch): </strong>{{ arrivalEpochTime}} </div>
-      <div><strong>Arrival time (Readable): </strong>{{ arrivalReadableTime}} </div>
+      <div><strong>Local arrival time (full) : </strong>{{ arrivalTimeFormatted }} </div>
+      <div><strong>Local arrival time (short): </strong>{{ arrivalTimeFormatted2 }} </div>
       <div><strong>Trip summary: </strong>{{ result.routes[0].summary }} </div>
-      <div><strong>Trip legs: </strong>{{ routeLegCount }} </div>
-      <strong>Route list: </strong><div ng-repeat="step in routeList">{{ routeList[step] }} </div>
+      <!--<div><strong>Trip legs: </strong>{{ routeLegCount }} </div>-->
+      <!--<strong>Route list: </strong><div ng-repeat="step in routeList">{{ routeList[step] }} </div>-->
    </div>
    <br/>
 </div>
 <br/>
-<h3>Twilio Testing</h3>
+<h3>Twilio</h3>
 <div ng-controller="NotifyCtrl">
-   {{ testText }}
-   <button ng-click="notify()">Click me to send a message!</button>
+<form ng-submit="notify(msgTo, msgBody)">
+   <strong>To: </strong>
+   <input type="text" ng-model="msgTo" placeholder="5556667890" required/>
+   <strong>Message: </strong>
+   <input type="text" ng-model="msgBody" style="width: 200px" required/>
+   <br/>
+   <br/>
+   <button class="btn btn-default" action="submit">Send message</button>
+</form>
 </div>
-
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular.js"></script>
+<script type="text/javascript" src="https:////ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular-resource.js"></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDKB4EBWfJj0i2qb-Qul3qxfv9D7Mk_D0"></script>
-<script src="//static.twilio.com/libs/twiliojs/1.2/twilio.min.js"></script>
 <script src="/javascripts/MapsController.js"></script>
-
 </body>
 </html>

@@ -1,18 +1,21 @@
 /**
- * Created by Zach on 1/6/15.
+ * Imports Twilio node library and passes in user variables for custom message.
  */
 
-var SMSconfig = require('../../SMSconfig.log');
-var accountSid = SMSconfig.accountSid;
-var authToken = SMSconfig.authToken;
+var DinoMessage = module.exports = {
 
-var client = require('twilio')(accountSid, authToken);
+    sendMessage: function(body, to) {
 
-client.sms.messages.create({
-    body: "messagy messages",
-    to: "+1",
-    from: SMSconfig.sender
-}, function(err, message) {
-    process.stdout.write(message.sid);
-    console.log(err);
-});
+        var client = require('twilio')();
+
+        client.sms.messages.create({
+            body: body,
+            to: to,
+            from: "+12019571381"
+        }, function(err, message) {
+            process.stdout.write(message.sid);
+            console.log(err);
+        });
+    }
+}
+

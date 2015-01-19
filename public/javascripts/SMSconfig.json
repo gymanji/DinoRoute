@@ -1,7 +1,0 @@
-var SMSconfig = {};
-
-SMSconfig.accountSid = "ACb3d8f6e0a92e4a0fac1db4edbe297ba2";
-SMSconfig.authToken = "0f780f7b69f76dbbb0cb3394cbcad989";
-SMSconfig.sender = "+12019571381";
-
-module.exports = SMSconfig;
