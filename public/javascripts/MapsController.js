@@ -9,6 +9,28 @@ app.controller('MapsController', ['$scope', function($scope) {
 
 	$scope.getDirections = function () {
 
+		// WHILE loop testing timer
+		var i = 0;
+		while (i < 3) {
+			setTimeout(doSomething, 3000);
+			i++;
+			console.log('i = ' + i);
+		}
+		//stopSomething();
+
+
+		// Timer testing functions
+		function doSomething() {
+			console.log('doSomething just executed');
+		}
+
+		function stopSomething () {
+			clearTimeout(doSomething());
+			console.log('stopSomething just executed');
+		}
+
+
+
 		// Request details
 		DirectionsRequest = {
 			origin: $scope.origin,
@@ -37,7 +59,8 @@ app.controller('MapsController', ['$scope', function($scope) {
 
 				//Unix epoch time conversion
 				$scope.tripDuration = result.routes[0].legs[0].duration.value;
-				var currentTime = Math.round(new Date().getTime()/1000.0);
+				var currentTime = Math.round(new Date().getTime()/1000.0)
+				//console.log('currentTime(Epoch): ' + currentTime);
 				var arrivalEpochTime = currentTime + $scope.tripDuration;
 				var arrivalReadableTime = new Date(arrivalEpochTime * 1000);
 				$scope.arrivalTimeFormatted = arrivalReadableTime.toLocaleString();
@@ -57,7 +80,7 @@ app.controller('NotifyCtrl', ['$scope', '$http', function($scope, $http) {
 	$scope.msgTo = "";
 	$scope.msgBody = "Houston, we have a problem.";
 
-	// Call server side Twilio functionality
+	// Call server side Twilio sms functionality
 	$scope.notify = function(msgTo, msgBody) {
 		data2 = [msgTo, msgBody];
 
